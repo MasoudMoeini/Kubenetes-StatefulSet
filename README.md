@@ -69,7 +69,7 @@ Get the Pods to view their container images:
 for p in 0 1 2; do kubectl get pod "web-$p" --template '{{range $i, $c := .spec.containers}}{{$c.image}}{{end}}'; echo; done
 ```
 To delete Statefulset without deleting pods
-````
+```
 kubectl delete statefulset web --cascade=orphan
 kubectl get pods -l app=nginx
 ```
