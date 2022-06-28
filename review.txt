@@ -1,0 +1,12 @@
+kubectl logs pod/web-p-0 
+
+2022/06/28 07:59:36 [error] 1#1: failed to initialize Lua VM in /etc/nginx/nginx.conf:117
+
+kubectl describe pod/web-p-0 
+Image:          k8s.gcr.io/nginx-slim:0.8
+
+docker run --rm -it --platform=linux/amd64 k8s.gcr.io/nginx-slim:0.8 bash
+
+cd etc/nginx
+
+cat nginx.conf
