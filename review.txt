@@ -10,3 +10,7 @@ docker run --rm -it --platform=linux/amd64 k8s.gcr.io/nginx-slim:0.8 bash
 cd etc/nginx
 
 cat nginx.conf
+
+Note: Not every image use bash shell 
+docker run --rm -it "us-docker.pkg.dev/google-samples/containers/gke/hello-app:2.0" sh   
+docker exec -it 3d1588519433 sh

@@ -32,9 +32,49 @@ kubectl run -i --tty --image busybox:1.28 dns-test --restart=Never --rm
 nslookup web-0.nginx
 nslookup web-1.nginx
 ```
+Deleting all StatefulSet's Pods
+```
+kubectl delete pod -l app=nginx
+```
+Running again 
+```
+kubectl get pods -l app=nginx
+```
+Pods automatically again created with different addresses 
+```
+kubectl get pod -w -l app=nginx
+```
 Stable Storage 
 ```
 kubectl get pvc -l app=nginx
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'echo "$(hostname)" > /usr/share/nginx/html/index.html'; done
 for i in 0 1; do kubectl exec -i -t "web-$i" -- curl http://localhost/; done
+```
+Scaling a StatefulSet
+```
+kubectl get pods -w -l app=nginx
+kubectl scale sts web --replicas=5
+kubectl get pods -w -l app=nginx
+kubectl patch sts web -p '{"spec":{"replicas":3}}'
+kubectl get pods -w -l app=nginx
+```
+Switch bach to pvc
+```
+kubectl get pvc -l app=nginx
+```
+The PersistentVolumes mounted to the Pods of a StatefulSet are not deleted 
+when the StatefulSet's Pods are deleted<br>
+Get the Pods to view their container images:
+```
+for p in 0 1 2; do kubectl get pod "web-$p" --template '{{range $i, $c := .spec.containers}}{{$c.image}}{{end}}'; echo; done
+```
+To delete Statefulset without deleting pods
+````
+kubectl delete statefulset web --cascade=orphan
+kubectl get pods -l app=nginx
+```
+Delete resources
+```
+kubectl delete service nginx
+kubectl delete statefulset web
 ```
