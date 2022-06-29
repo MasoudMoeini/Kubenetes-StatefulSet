@@ -17,22 +17,26 @@ kubectl get statefulset web
 ```
 kubectl get pods -w -l app=nginx
 ```
+Examin the pods running in Ordinal index
 ```
 kubectl get pods -l app=nginx
 ```
-Each pod has stable host name 
+The Pods' names take the form <statefulset name>-<ordinal index>. 
+Since the web StatefulSet has two replicas, it creates two Pods, web-0 and web-1.
+In the StatefulSets concept, the Pods in a StatefulSet have a sticky, unique identity.<br>
+This identity is based on a unique ordinal index that is assigned to each Pod by the StatefulSet controller.
+Each pod has stable host name based on its ordinal index
 ```
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'hostname'; done
 ```
-Create dns , with name of test
+Using nslookup on the Pods' hostnames, you can examine their in-cluster DNS addresses:
 ```
 kubectl run -i --tty --image busybox:1.28 dns-test --restart=Never --rm
-```
-```
 nslookup web-0.nginx
 nslookup web-1.nginx
 ```
-Deleting all StatefulSet's Pods
+When you deleting all StatefulSet's Pods, StatefulSet Controller create new pods wuth the same <br>
+hostname but different dns addresses
 ```
 kubectl delete pod -l app=nginx
 ```
@@ -40,9 +44,11 @@ Running again
 ```
 kubectl get pods -l app=nginx
 ```
-Pods automatically again created with different addresses 
+Pods automatically again created with the same id and different addresses 
 ```
 kubectl get pod -w -l app=nginx
+kubectl run -i --tty --image busybox:1.28 dns-test --restart=Never --rm /bin/sh
+nslookup web-0.nginx
 ```
 Stable Storage 
 ```
