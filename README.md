@@ -103,4 +103,5 @@ Delete resources
 ```
 kubectl delete service nginx
 kubectl delete statefulset web
+kubectl delete pvc --all 
 ```
