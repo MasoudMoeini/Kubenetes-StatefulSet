@@ -35,6 +35,8 @@ start a shell session inside containers running in your Kubernetes cluster
 ```
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'hostname'; done
 ```
+In the busybox image is a basic shell that contains useful utilities nslookup and wget.<br>
+nslookup is useful for testing DNS resolution in a pod<br>
 Using nslookup on the Pods' hostnames, you can examine their in-cluster DNS addresses:
 ```
 kubectl run -i --tty --image busybox:1.28 dns-test --restart=Never --rm
