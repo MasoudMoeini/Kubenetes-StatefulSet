@@ -54,6 +54,7 @@ nslookup web-0.nginx
 ```
 kubectl get pvc -l app=nginx
 ``` 
+```
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'echo "$(hostname)" > /usr/share/nginx/html/index.html'; done
 for i in 0 1; do kubectl exec -i -t "web-$i" -- curl http://localhost/; done
 ```
