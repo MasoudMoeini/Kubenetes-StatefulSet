@@ -28,9 +28,9 @@ This identity is based on a unique ordinal index that is assigned to each Pod by
 Each pod has stable host name based on its ordinal index.<br>
 As each Pod can incorporate several containers, kubectl exec supports an additional argument<br>
 to let you specify a Pod and container to connect to:<br>
-**kubectl exec -it <pod> -c <container> -- /bin/sh**  <br>
+**$ kubectl exec -it <pod> -c <container> -- /bin/sh**  <br>
 kubectl exec for deployment:<br>
-kubectl exec -it deployment/demo-deployment -- /bin/sh<br>
+**$ kubectl exec -it deployment/demo-deployment -- /bin/sh**  <br>
 start a shell session inside containers running in your Kubernetes cluster
 ```
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'hostname'; done
