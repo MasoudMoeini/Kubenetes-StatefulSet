@@ -21,13 +21,13 @@ Examin the pods running in Ordinal index
 ```
 kubectl get pods -l app=nginx
 ```
-The Pods' names take the form <statefulset name>-<ordinal index>. 
-Since the web StatefulSet has two replicas, it creates two Pods, web-0 and web-1.
+The Pods' names take the form <statefulset name>-<ordinal index>.  <br>
+Since the web StatefulSet has two replicas, it creates two Pods, web-0 and web-1.<br>
 In the StatefulSets concept, the Pods in a StatefulSet have a sticky, unique identity.<br>
-This identity is based on a unique ordinal index that is assigned to each Pod by the StatefulSet controller.
+This identity is based on a unique ordinal index that is assigned to each Pod by the StatefulSet controller.<br>
 Each pod has stable host name based on its ordinal index.<br>
 As each Pod can incorporate several containers, kubectl exec supports an additional argument<br>
-to let you specify a Pod and container to connect to:
+to let you specify a Pod and container to connect to:<br>
 **kubectl exec -it <pod> -c <container> -- /bin/sh**  <br>
 kubectl exec for deployment:<br>
 kubectl exec -it deployment/demo-deployment -- /bin/sh<br>
