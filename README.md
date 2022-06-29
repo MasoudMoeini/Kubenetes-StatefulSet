@@ -50,7 +50,7 @@ kubectl get pod -w -l app=nginx
 kubectl run -i --tty --image busybox:1.28 dns-test --restart=Never --rm /bin/sh
 nslookup web-0.nginx
 ```
-Stable Storage 
+# Persistent Volume  
 ```
 kubectl get pvc -l app=nginx
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'echo "$(hostname)" > /usr/share/nginx/html/index.html'; done
