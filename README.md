@@ -50,6 +50,13 @@ kubectl get pvc -l app=nginx
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'echo "$(hostname)" > /usr/share/nginx/html/index.html'; done
 for i in 0 1; do kubectl exec -i -t "web-$i" -- curl http://localhost/; done
 ```
+exception: if image does not have curl RUN:
+```
+kubectl port-forward <pod-name eg web-0> 8080:80
+http localhost:80
+curl http://localhost:80/
+```  
+
 Scaling a StatefulSet
 ```
 kubectl get pods -w -l app=nginx
