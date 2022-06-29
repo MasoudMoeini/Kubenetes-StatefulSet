@@ -10,8 +10,9 @@ kubectl apply -f web.yaml
 ```
 StatefulSet will not create the next pod in Replica unless the previous one is up and running<br>
 each pod in StatefulSet get its own DNS name/endpoit from a service summary:<b>
-- pods have fixed sticky identitiy <br>
-- fixed individual DNS names , only ip address will change <br>
+-pods have fixed sticky identitiy <br>
+-fixed individual DNS names , only ip address will change <br>
+
 ```
 kubectl get service nginx
 ```
