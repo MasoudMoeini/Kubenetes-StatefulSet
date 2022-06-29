@@ -25,7 +25,13 @@ The Pods' names take the form <statefulset name>-<ordinal index>.
 Since the web StatefulSet has two replicas, it creates two Pods, web-0 and web-1.
 In the StatefulSets concept, the Pods in a StatefulSet have a sticky, unique identity.<br>
 This identity is based on a unique ordinal index that is assigned to each Pod by the StatefulSet controller.
-Each pod has stable host name based on its ordinal index
+Each pod has stable host name based on its ordinal index.<br>
+As each Pod can incorporate several containers, kubectl exec supports an additional argument<br>
+to let you specify a Pod and container to connect to:
+**kubectl exec -it <pod> -c <container> -- /bin/sh**  <br>
+kubectl exec for deployment:<br>
+kubectl exec -it deployment/demo-deployment -- /bin/sh<br>
+start a shell session inside containers running in your Kubernetes cluster
 ```
 for i in 0 1; do kubectl exec "web-$i" -- sh -c 'hostname'; done
 ```
