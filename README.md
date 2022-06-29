@@ -8,9 +8,9 @@ kubectl get pods -w -l app=nginx
 ```
 kubectl apply -f web.yaml
 ```
-StatefulSet will not create the next pod in Replica unless the previous one is up and running
-each pod in StatefulSet get its own DNS name/endpoit from a service in summary 
-pods have fixed sticky identitiy, fixed individual DNS names , only ip address will change 
+StatefulSet will not create the next pod in Replica unless the previous one is up and running<br>
+each pod in StatefulSet get its own DNS name endpoit from a service in summary <br>
+pods have fixed sticky identitiy, fixed individual DNS names , only ip address will change <br>
 ```
 kubectl get service nginx
 ```
@@ -24,7 +24,7 @@ Examin the pods running in Ordinal index
 ```
 kubectl get pods -l app=nginx
 ```
-The Pods' names take the form <statefulset name>-<ordinal index>.  <br>
+The Pods' names take the form {statefulset name-ordinal index}  <br>
 Since the web StatefulSet has two replicas, it creates two Pods, web-0 and web-1.<br>
 In the StatefulSets concept, the Pods in a StatefulSet have a sticky, unique identity.<br>
 This identity is based on a unique ordinal index that is assigned to each Pod by the StatefulSet controller.<br>
